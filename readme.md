@@ -53,10 +53,6 @@ User-Management-System/
 └── README.md          # Project documentation
 ```
 
-
-## 📱 Responsive Breakpoints
-
-
 ## 🌟 Support
 
 Star the project if you find it useful! Contributions and feedback are always welcome.
