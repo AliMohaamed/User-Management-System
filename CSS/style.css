@@ -1,0 +1,335 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+}
+
+.table-wrapper {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #f1f5f9;
+}
+
+th {
+  padding: 18px 20px;
+  text-align: left;
+  font-weight: 600;
+  color: #334155;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+tr:hover {
+  background-color: #e2e8f0;
+}
+
+td {
+  padding: 16px 20px;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-get {
+  background-color: #010811;
+  color: #ffffff;
+}
+.btn-get:hover {
+  background-color: #413f40;
+}
+.btn-view {
+  background-color: #dbeafe;
+  color: #2563eb;
+}
+
+.btn-view:hover {
+  background-color: #bfdbfe;
+}
+
+.btn-delete {
+  background-color: #fee2e2;
+  color: #ef4444;
+}
+
+.btn-delete:hover {
+  background-color: #fecaca;
+}
+
+.table-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 10px;
+}
+/* =========Modal============== */
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background-color: white;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow: auto;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal-overlay.active .modal {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #64748b;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.modal-close:hover {
+  background-color: #f1f5f9;
+  color: #334155;
+}
+
+.modal-body {
+  margin-bottom: 20px;
+}
+.title-row {
+  width: fit-content;
+  background-color: #334155;
+  color: #f1f5f9;
+  padding: 5px;
+  margin-bottom: 20px;
+  border-radius: 3px;
+}
+.detail-row {
+  display: flex;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.detail-label {
+  font-weight: 500;
+  width: 120px;
+  color: #64748b;
+}
+
+.detail-value {
+  flex: 1;
+  color: #334155;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-primary {
+  background-color: #3b82f6;
+  color: white;
+  padding: 10px 20px;
+}
+
+.btn-primary:hover {
+  background-color: #2563eb;
+}
+
+@media (max-width: 768px) {
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  th,
+  td {
+    padding: 12px 16px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Delete Confirmation Modal */
+.delete-modal {
+  max-width: 400px;
+  text-align: center;
+  border-top: 5px solid #ef4444;
+}
+
+.delete-icon {
+  font-size: 48px;
+  margin: 10px 0 20px;
+  animation: shake 0.5s ease-in-out;
+}
+
+.delete-message {
+  font-size: 18px;
+  font-weight: 500;
+  color: #334155;
+  margin-bottom: 12px;
+}
+
+.delete-username {
+  color: #64748b;
+  margin-bottom: 20px;
+}
+
+.delete-username span {
+  font-weight: 600;
+  color: #ef4444;
+}
+
+.btn-cancel {
+  background-color: #e2e8f0;
+  color: #64748b;
+  margin-right: 10px;
+}
+
+.btn-cancel:hover {
+  background-color: #cbd5e1;
+  color: #334155;
+}
+
+.btn-confirm-delete {
+  background-color: #ef4444;
+  color: white;
+}
+
+.btn-confirm-delete:hover {
+  background-color: #dc2626;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-5px);
+  }
+  40%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+.delete-modal-overlay.active .modal {
+  animation: bounceIn 0.5s ease forwards;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
